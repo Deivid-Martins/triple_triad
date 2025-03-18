@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class Card {
     private String name;
-    private final Integer up, down; // eixo y
-    private final Integer left, right; // eixo X
+    private Integer up, down; // eixo y
+    private Integer left, right; // eixo X
 
     public Card(String name, int up, int down, int left, int right) {
         this.name = name;
@@ -15,12 +15,20 @@ public class Card {
         this.right = right;
     }
 
-    public Card(int[] power) {
+    public Card(String name, int[] power) {
         this.name = name;
         this.up = power[0];
         this.down = power[1];
         this.left = power[2];
         this.right = power[3];
+    }
+
+    public Card(Card card) {
+        this.name = card.getName();
+        this.up = card.getUp();
+        this.down = card.getDown();
+        this.left = card.getLeft();
+        this.right = card.getRight();
     }
 
     public Card() {
@@ -35,5 +43,25 @@ public class Card {
         this.left = input.nextInt();
         System.out.print("Right power: ");
         this.right = input.nextInt();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Integer getUp() {
+        return up;
+    }
+
+    public Integer getDown() {
+        return down;
+    }
+
+    public Integer getLeft() {
+        return left;
+    }
+
+    public Integer getRight() {
+        return right;
     }
 }
