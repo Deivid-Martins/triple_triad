@@ -45,6 +45,13 @@ public class Card {
         this.right = input.nextInt();
     }
 
+    public void printCard() {
+        System.out.println(this.name);
+        System.out.println("  " + this.up);
+        System.out.println(this.left + "   " + this.right);
+        System.out.println("  " + this.down);
+    }
+
     public String getName() {
         return name;
     }
