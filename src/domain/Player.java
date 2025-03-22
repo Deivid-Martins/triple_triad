@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Player {
     private String name;
-    public List<Card> cards = new ArrayList<Card>();
+    private List<Card> cards = new ArrayList<Card>();
 
     public Player(String name, Card[] cards) {
         this.name = name;
