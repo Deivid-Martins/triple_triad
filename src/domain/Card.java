@@ -9,6 +9,15 @@ public class Card {
 
     private boolean isRed = false; // Aux on print, to change the color
 
+    public Card(String name, String up, String down, String left, String right, boolean isRed) {
+        this.name = name;
+        this.up = up;
+        this.down = down;
+        this.left = left;
+        this.right = right;
+        this.isRed = isRed;
+    }
+
     public Card(String name, String up, String down, String left, String right) {
         this.name = name;
         this.up = up;
@@ -76,5 +85,13 @@ public class Card {
 
     public String getRight() {
         return right;
+    }
+
+    public String getIsRed() {
+        if(isRed){
+            return "RED";
+        } else {
+            return "GREEN";
+        }
     }
 }
