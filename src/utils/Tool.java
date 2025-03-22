@@ -65,7 +65,7 @@ public abstract class Tool {
         if(cards[4][index + 2].equals("RED")) {
             System.err.print(ConsoleColors.RED + cards[col][index + 2] + ConsoleColors.RESET);
         } else {
-            System.out.print(ConsoleColors.BLUE + cards[col][index + 2] + ConsoleColors.RESET);
+            System.out.print(ConsoleColors.RED + cards[col][index + 2] + ConsoleColors.RESET);
         }
     }
 }
