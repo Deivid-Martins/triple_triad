@@ -7,6 +7,8 @@ public class Card {
     private String up, down; // eixo y
     private String left, right; // eixo X
 
+    private boolean isRed = false; // Aux on print, to change the color
+
     public Card(String name, String up, String down, String left, String right) {
         this.name = name;
         this.up = up;
@@ -50,6 +52,10 @@ public class Card {
         System.out.println("  " + this.up);
         System.out.println(this.left + "   " + this.right);
         System.out.println("  " + this.down);
+    }
+
+    public void changeCardColor() {
+        this.isRed = !this.isRed;
     }
 
     public String getName() {

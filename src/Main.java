@@ -1,4 +1,5 @@
 import domain.Card;
+import utils.StartGame;
 import utils.Tool;
 
 import java.util.ArrayList;
@@ -18,5 +19,7 @@ public class Main {
 //
 //        Tool.printGameBoard(cards.toArray(new Card[0]));
 
+        StartGame startGame = new StartGame();
+        startGame.execute();
     }
 }

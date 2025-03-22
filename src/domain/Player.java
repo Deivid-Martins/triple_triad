@@ -1,12 +1,13 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 public class Player {
-    private String name;
-    private List<Card> cards = new ArrayList<Card>();
+    private final String name;
+    private List<Card> cards = new ArrayList<>();
 
     public Player(String name, Card[] cards) {
         this.name = name;
@@ -32,11 +33,21 @@ public class Player {
         this.cards.add(card);
     }
 
+    public void addCardsArray(Card[] cards) {
+        this.cards = Arrays.stream(cards).toList();
+    }
+
     public void printPlayerInfo() {
         System.out.println("Player name: " + this.name);
         System.out.println("Quantity of cards: " + this.cards.size());
         for (Card card : this.cards) {
             card.printCard();
+        }
+    }
+
+    public void changeAllCardsColor() {
+        for (Card card : this.cards) {
+            card.changeCardColor();
         }
     }
 }
