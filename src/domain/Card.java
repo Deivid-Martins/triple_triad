@@ -4,10 +4,10 @@ import java.util.Scanner;
 
 public class Card {
     private String name;
-    private Integer up, down; // eixo y
-    private Integer left, right; // eixo X
+    private String up, down; // eixo y
+    private String left, right; // eixo X
 
-    public Card(String name, int up, int down, int left, int right) {
+    public Card(String name, String up, String down, String left, String right) {
         this.name = name;
         this.up = up;
         this.down = down;
@@ -15,7 +15,7 @@ public class Card {
         this.right = right;
     }
 
-    public Card(String name, int[] power) {
+    public Card(String name, String[] power) {
         this.name = name;
         this.up = power[0];
         this.down = power[1];
@@ -36,13 +36,13 @@ public class Card {
         System.out.print("Enter the name of the card: ");
         this.name = input.next();
         System.out.print("Up power: ");
-        this.up = input.nextInt();
+        this.up = input.next();
         System.out.print("Down power: ");
-        this.down = input.nextInt();
+        this.down = input.next();
         System.out.print("Left power: ");
-        this.left = input.nextInt();
+        this.left = input.next();
         System.out.print("Right power: ");
-        this.right = input.nextInt();
+        this.right = input.next();
     }
 
     public void printCard() {
@@ -56,19 +56,19 @@ public class Card {
         return name;
     }
 
-    public Integer getUp() {
+    public String getUp() {
         return up;
     }
 
-    public Integer getDown() {
+    public String getDown() {
         return down;
     }
 
-    public Integer getLeft() {
+    public String getLeft() {
         return left;
     }
 
-    public Integer getRight() {
+    public String getRight() {
         return right;
     }
 }
