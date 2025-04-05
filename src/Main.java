@@ -1,24 +1,21 @@
 import domain.Card;
-import utils.Tool;
-
+import domain.Gameboard;
+import domain.Player;
 
 public class Main {
-    public static void main(String[] args) {
-        Card[] cards = {
-                new Card("ab", "2", "3", "A", "5", false),
-                new Card("bc", "2", "3", "A", "5"),
-                new Card("vd", "2", "3", "A", "5", false),
-                new Card("wd", "2", "3", "A", "5"),
-                new Card("wq", "2", "3", "A", "5", false),
-                new Card("sd", "2", "3", "A", "5", false),
-                new Card("xc", "2", "3", "A", "5"),
-                new Card("qw", "2", "3", "A", "5"),
-                new Card("sa", "2", "3", "A", "5", false)
-        };
+    public static void main(String[] args) throws Exception {
+        Gameboard gameboard = new Gameboard();
 
-        Tool.printGameBoard(cards);
+        Player player1 = new Player("Deivid", true);
+        Player player2 = new Player("Erika", false);
+        Card card1 = new Card("Charizard", 2, 5, 10, 3, player1);
+        Card card2 = new Card("Bulbasaur", 3, 10, 1, 2, player2);
+        Card card3 = new Card("Pikachu", 6, 4, 5, 2, player1);
 
-//        StartGame startGame = new StartGame();
-//        startGame.execute();
+        gameboard.addCarta(0, 0, card1);
+        gameboard.addCarta(1, 1, card2);
+        gameboard.addCarta(1, 2, card3);
+
+        gameboard.mostrarTabuleiro();
     }
 }

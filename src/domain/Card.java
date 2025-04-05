@@ -4,94 +4,44 @@ import java.util.Scanner;
 
 public class Card {
     private String name;
-    private String up, down; // eixo y
-    private String left, right; // eixo X
+    private int up, down; // eixo y
+    private int left, right; // eixo X
+    private Player owner;
 
-    private boolean isRed = false; // Aux on print, to change the color
-
-    public Card(String name, String up, String down, String left, String right, boolean isRed) {
+    public Card(String name, int up, int down, int left, int right, Player owner) {
         this.name = name;
         this.up = up;
         this.down = down;
         this.left = left;
         this.right = right;
-        this.isRed = isRed;
-    }
-
-    public Card(String name, String up, String down, String left, String right) {
-        this.name = name;
-        this.up = up;
-        this.down = down;
-        this.left = left;
-        this.right = right;
-    }
-
-    public Card(String name, String[] power) {
-        this.name = name;
-        this.up = power[0];
-        this.down = power[1];
-        this.left = power[2];
-        this.right = power[3];
-    }
-
-    public Card(Card card) {
-        this.name = card.getName();
-        this.up = card.getUp();
-        this.down = card.getDown();
-        this.left = card.getLeft();
-        this.right = card.getRight();
-    }
-
-    public Card() {
-        Scanner input = new Scanner(System.in);
-        System.out.print("Enter the name of the card: ");
-        this.name = input.next();
-        System.out.print("Up power: ");
-        this.up = input.next();
-        System.out.print("Down power: ");
-        this.down = input.next();
-        System.out.print("Left power: ");
-        this.left = input.next();
-        System.out.print("Right power: ");
-        this.right = input.next();
-    }
-
-    public void printCard() {
-        System.out.println(this.name);
-        System.out.println("  " + this.up);
-        System.out.println(this.left + "   " + this.right);
-        System.out.println("  " + this.down);
-    }
-
-    public void changeCardColor() {
-        this.isRed = !this.isRed;
+        this.owner = owner;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getUp() {
+    public int getUp() {
         return up;
     }
 
-    public String getDown() {
+    public int getDown() {
         return down;
     }
 
-    public String getLeft() {
+    public int getLeft() {
         return left;
     }
 
-    public String getRight() {
+    public int getRight() {
         return right;
     }
 
-    public String getIsRed() {
-        if(isRed){
-            return "RED";
-        } else {
-            return "GREEN";
-        }
+    public Player getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Player owner) {
+        this.owner = owner;
     }
 }

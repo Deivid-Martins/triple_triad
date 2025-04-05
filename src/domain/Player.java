@@ -3,30 +3,17 @@ package domain;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 public class Player {
     private final String name;
-    private List<Card> cards = new ArrayList<>();
+    private final boolean IsPlayerOne;
+    private List<Card> cards;
 
-    public Player(String name, Card[] cards) {
+
+    public Player(String name, boolean IsPlayerOne) {
         this.name = name;
-        this.cards = List.of(cards);
-    }
-
-    public Player(String name, List<Card> cards) {
-        this.name = name;
-        this.cards = cards;
-    }
-
-    public Player(String name) {
-        this.name = name;
-    }
-
-    public Player() {
-        Scanner input = new Scanner(System.in);
-        System.out.print("Name: ");
-        this.name = input.nextLine();
+        this.cards = new ArrayList<>();
+        this.IsPlayerOne = IsPlayerOne;
     }
 
     public void addCard(Card card) {
@@ -37,17 +24,7 @@ public class Player {
         this.cards = Arrays.stream(cards).toList();
     }
 
-    public void printPlayerInfo() {
-        System.out.println("Player name: " + this.name);
-        System.out.println("Quantity of cards: " + this.cards.size());
-        for (Card card : this.cards) {
-            card.printCard();
-        }
-    }
-
-    public void changeAllCardsColor() {
-        for (Card card : this.cards) {
-            card.changeCardColor();
-        }
+    public boolean IsPlayerOne() {
+        return IsPlayerOne;
     }
 }
