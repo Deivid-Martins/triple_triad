@@ -44,4 +44,12 @@ public class Card {
     public void setOwner(Player owner) {
         this.owner = owner;
     }
+
+    @Override
+    public String toString() {
+        return "Card{" +
+                "name='" + name + '\'' +
+                ", owner=" + owner.getName() +
+                '}';
+    }
 }

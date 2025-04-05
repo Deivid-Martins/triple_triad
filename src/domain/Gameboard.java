@@ -33,7 +33,7 @@ public class Gameboard {
 
         int quantityPointsObtained = 0;
 
-        // quantityPointsObtained += this.checarPlus(i, j, card);
+        quantityPointsObtained += this.checkSame(i, j, card);
 
         quantityPointsObtained += this.checkLeft(i, j, card);
         quantityPointsObtained += this.checkRight(i, j, card);
@@ -47,8 +47,8 @@ public class Gameboard {
     private int checkLeft(int i, int j, Card card) {
         if (
                 j == 0 ||
-                        matriz[i][j-1] == null ||
-                        matriz[i][j-1].getOwner().equals(card.getOwner())
+                matriz[i][j-1] == null ||
+                matriz[i][j-1].getOwner().equals(card.getOwner())
         ) {
             return 0;
         }
@@ -65,8 +65,8 @@ public class Gameboard {
     private int checkRight(int i, int j, Card card) {
         if (
                 j == 2 ||
-                        matriz[i][j+1] == null ||
-                        matriz[i][j+1].getOwner().equals(card.getOwner())
+                matriz[i][j+1] == null ||
+                matriz[i][j+1].getOwner().equals(card.getOwner())
         ) {
             return 0;
         }
@@ -83,8 +83,8 @@ public class Gameboard {
     private int checkUp(int i, int j, Card card) {
         if (
                 i == 0 ||
-                        matriz[i-1][j] == null ||
-                        matriz[i-1][j].getOwner().equals(card.getOwner())
+                matriz[i-1][j] == null ||
+                matriz[i-1][j].getOwner().equals(card.getOwner())
         ) {
             return 0;
         }
@@ -101,8 +101,8 @@ public class Gameboard {
     private int checkDown(int i, int j, Card card) {
         if (
                 i == 2 ||
-                        matriz[i+1][j] == null ||
-                        matriz[i+1][j].getOwner().equals(card.getOwner())
+                matriz[i+1][j] == null ||
+                matriz[i+1][j].getOwner().equals(card.getOwner())
         ) {
             return 0;
         }
@@ -114,6 +114,85 @@ public class Gameboard {
         }
 
         return 0;
+    }
+
+    private int checkSame(int i, int j, Card card) {
+        boolean resultUp, resultDown, resultLeft, resultRight;
+        int quantityPointsObtained = 0;
+
+        resultUp = sameUp(i, j, card);
+        resultDown = sameDown(i, j, card);
+        resultLeft = sameLeft(i, j, card);
+        resultRight = sameRight(i, j, card);
+        boolean[] allResults = {resultUp, resultDown, resultLeft, resultRight};
+
+        for(int k = 0; k < allResults.length; k ++) {
+            for(int l = k+1; l < allResults.length; l ++) {
+                if(allResults[k] && allResults[l] && allResults[k] == allResults[l]) {
+                    System.out.println("Same rule used!");
+
+                    switch (k) {
+                        case 0:
+                            matriz[i-1][j].setOwner(card.getOwner());
+                            quantityPointsObtained++;
+                            break;
+
+                        case 1:
+                            matriz[i][j-1].setOwner(card.getOwner());
+                            quantityPointsObtained++;
+                            break;
+
+                        case 2:
+                            matriz[i+1][j].setOwner(card.getOwner());
+                            quantityPointsObtained++;
+                            break;
+                    }
+
+                    switch (l) {
+                        case 1:
+                            matriz[i][j-1].setOwner(card.getOwner());
+                            quantityPointsObtained++;
+                            break;
+
+                        case 2:
+                            matriz[i+1][j].setOwner(card.getOwner());
+                            quantityPointsObtained++;
+                            break;
+
+                        case 3:
+                            matriz[i][j+1].setOwner(card.getOwner());
+                            quantityPointsObtained++;
+                            break;
+                    }
+                }
+            }
+        }
+
+        return quantityPointsObtained;
+    }
+
+    private boolean sameUp(int i, int j, Card card) {
+        if (i == 0 || matriz[i-1][j] == null)
+            return false;
+        return matriz[i][j].getUp() == matriz[i - 1][j].getDown();
+    }
+
+    private boolean sameDown(int i, int j, Card card) {
+        if (i == 2 || matriz[i+1][j] == null)
+            return false;
+        return matriz[i][j].getDown() == matriz[i+1][j].getUp();
+    }
+
+    private boolean sameLeft(int i, int j, Card card) {
+        if (j == 0 || matriz[i][j-1] == null)
+            return false;
+        return matriz[i][j].getLeft() == matriz[i][j-1].getRight();
+    }
+
+    private boolean sameRight(int i, int j, Card card) {
+        if (j == 2 || matriz[i][j+1] == null)
+            return false;
+        return matriz[i][j].getRight() == matriz[i][j+1].getLeft();
     }
 
     private String numCima(int i, int j) {
@@ -164,11 +243,6 @@ public class Gameboard {
     }
 
     public void mostrarTabuleiro() {
-        System.out.println( ConsoleColors.WHITE + "  _____     _     ___   _   _   _      ___   ___   ___    ___  \r\n" + //
-                " |_   _|   /_\\   | _ ) | | | | | |    | __| |_ _| | _ \\  / _ \\ \r\n" + //
-                "   | |    / _ \\  | _ \\ | |_| | | |__  | _|   | |  |   / | (_) |\r\n" + //
-                "   |_|   /_/ \\_\\ |___/  \\___/  |____| |___| |___| |_|_\\  \\___/ ");
-
         System.out.println("\n"+cor(0, 0)+"                    +-----+ "+cor(0, 1)+" +-----+ "+cor(0, 2)+" +-----+\n" +
 
                 "                    "+cor(0, 0)+"|"+numCima(0,0)+"| "+cor(0, 1)+" |"+numCima(0,1)+"| "+cor(0, 2)+" |"+numCima(0,2)+"|\n" +

@@ -27,4 +27,8 @@ public class Player {
     public boolean IsPlayerOne() {
         return IsPlayerOne;
     }
+
+    public String getName() {
+        return name;
+    }
 }
