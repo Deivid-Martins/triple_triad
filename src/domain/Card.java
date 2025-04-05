@@ -3,22 +3,16 @@ package domain;
 import java.util.Scanner;
 
 public class Card {
-    private String name;
     private int up, down; // eixo y
     private int left, right; // eixo X
     private Player owner;
 
-    public Card(String name, int up, int down, int left, int right, Player owner) {
-        this.name = name;
+    public Card(int up, int down, int left, int right, Player owner) {
         this.up = up;
         this.down = down;
         this.left = left;
         this.right = right;
         this.owner = owner;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public int getUp() {
@@ -48,8 +42,7 @@ public class Card {
     @Override
     public String toString() {
         return "Card{" +
-                "name='" + name + '\'' +
-                ", owner=" + owner.getName() +
+                "owner=" + owner.getName() +
                 '}';
     }
 }
