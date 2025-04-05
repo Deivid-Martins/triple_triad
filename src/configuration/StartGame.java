@@ -1,4 +1,4 @@
-package utils;
+package configuration;
 
 import domain.Card;
 import domain.Player;
