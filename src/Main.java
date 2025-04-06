@@ -1,10 +1,7 @@
 import configuration.StartGame;
-import domain.Card;
-import domain.Gameboard;
-import domain.Player;
 
 public class Main {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         StartGame startGame = new StartGame();
         startGame.execute();
     }

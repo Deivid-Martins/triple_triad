@@ -17,17 +17,8 @@ public class Gameboard {
      * @param j column to put the card
      * @param card card to be placed on gameboard
      * @return return the quantity of points obtained
-     * @throws Exception throws an exception on invalid place
      */
-    public int addCarta(int i, int j, Card card) throws Exception {
-        if (i > 2 || i < 0 || j > 2 || j < 0) {
-            throw new Exception("Célula inválida");
-        }
-
-        if (matriz[i][j] != null) {
-            throw new Exception("Célula já preenchida");
-        }
-
+    public int addCarta(int i, int j, Card card) {
         matriz[i][j] = card;
         quantityUsedCards++;
 
@@ -272,5 +263,9 @@ public class Gameboard {
                 "                    "+cor(2, 0)+"|"+numBaixo(2, 0)+"| "+cor(2, 1)+" |"+numBaixo(2, 1)+"| "+cor(2, 2)+" |"+numBaixo(2, 2)+"|\n" +
 
                 "                    "+cor(2, 0)+"+-----+ "+cor(2, 1)+" +-----+ "+cor(2, 2)+" +-----+\n" + ConsoleColors.RESET);
+    }
+
+    public Card[][] getMatriz () {
+        return this.matriz;
     }
 }

@@ -27,10 +27,6 @@ public class Player {
         this.points += points;
     }
 
-    public void addCard(Card card) {
-        this.cards.add(card);
-    }
-
     public void addCardsArray(Card[] cards) {
         this.cards = Arrays.stream(cards).toList();
     }
@@ -41,5 +37,13 @@ public class Player {
 
     public String getName() {
         return name;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public List<Card> getCards() {
+        return cards;
     }
 }
