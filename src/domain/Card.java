@@ -46,6 +46,14 @@ public class Card {
         this.owner = owner;
     }
 
+    public void print() {
+        System.out.println("+-----+\n" +
+                             "|  "+ (up == 10 ? "A" : up) +"  |\n" +
+                             "| "+ (left == 10 ? "A" : left) +" "+ (right == 10 ? "A" : right) +" |\n" +
+                             "|  "+ (down == 10 ? "A" : down) +"  |\n" +
+                             "+-----+");
+    }
+
     @Override
     public String toString() {
         return "Card{" +

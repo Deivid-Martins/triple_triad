@@ -17,6 +17,16 @@ public class Player {
         this.points = 0;
     }
 
+    public void printAllCards() {
+        for(Card card: cards) {
+            card.print();
+        }
+    }
+
+    public void addPoints(int points) {
+        this.points += points;
+    }
+
     public void addCard(Card card) {
         this.cards.add(card);
     }

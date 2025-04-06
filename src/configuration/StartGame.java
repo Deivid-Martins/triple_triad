@@ -42,5 +42,9 @@ public class StartGame {
                            "vão ficar logo acima das suas proprias cartas");
 
         gameboard.mostrarTabuleiro();
+        System.out.println("--- Cards of " + playerOne.getName() + " ---");
+        playerOne.printAllCards();
+        System.out.println("--- Cards of " + playerTwo.getName() + " ---");
+        playerTwo.printAllCards();
     }
 }
