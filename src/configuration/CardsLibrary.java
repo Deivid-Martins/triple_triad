@@ -1,6 +1,7 @@
 package configuration;
 
 import domain.Card;
+import domain.Player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,10 +42,12 @@ public class CardsLibrary {
      * @param quantity int quantity of cards that will be choosen
      * @return a card array with the size of the "quantity" above
      */
-    public Card[] getRandomCards(int quantity) {
+    public Card[] getRandomCards(int quantity, Player owner) {
         Card[] response = new Card[quantity];
         for(int i = 0; i < quantity; i++) {
-            response[i] = cards.get(random.nextInt(0, cards.size()));
+            int randomIndex = random.nextInt(0, cards.size());
+            this.cards.get(randomIndex).setOwner(owner);
+            response[i] = cards.get(randomIndex);
         }
 
         return response;

@@ -44,8 +44,8 @@ public class StartGame {
 
         System.out.println("Names defineds with sucess!");
         System.out.println("We'll randomly choose 5 cards to the players now...");
-        this.playerOne.setCardsArray(cardsLibrary.getRandomCards(5));
-        this.playerTwo.setCardsArray(cardsLibrary.getRandomCards(5));
+        this.playerOne.setCardsArray(cardsLibrary.getRandomCards(5, playerOne));
+        this.playerTwo.setCardsArray(cardsLibrary.getRandomCards(5, playerTwo));
         System.out.println("Cards choosen with sucess!");
 
         gameboard.showBoard();
@@ -53,6 +53,8 @@ public class StartGame {
 
         gameboard.showBoard();
         playerMenu(playerTwo, playerOne);
+
+        gameboard.showBoard();
     }
 
     /**
