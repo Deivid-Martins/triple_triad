@@ -39,7 +39,7 @@ public class Player {
         if(points > 0)
             this.points += points;
     }
-    
+
     public void setCardsArray(Card[] cards) {
         this.cards = Arrays.stream(cards).toList();
     }
