@@ -33,8 +33,8 @@ public class StartGame {
 
         System.out.println("Nomes definidos com sucesso!");
         System.out.println("Iremos sortear 5 cartas para cada um agora...");
-        this.playerOne.addCardsArray(cardsLibrary.getRandomCards(5));
-        this.playerTwo.addCardsArray(cardsLibrary.getRandomCards(5));
+        this.playerOne.setCardsArray(cardsLibrary.getRandomCards(5));
+        this.playerTwo.setCardsArray(cardsLibrary.getRandomCards(5));
         System.out.println("Cartas entregadas com sucesso!");
 
         gameboard.mostrarTabuleiro();
@@ -103,6 +103,6 @@ public class StartGame {
             System.out.print("Defina a coluna que deseja colocar a carta (1 a 3): ");
             j = Tool.nextIntLim(inputNum, 0, 2);
         }
-        player.addPoints(gameboard.addCarta(i, j, player.getCards().get(cardIndex - 1)));
+        player.setPoints(gameboard.addCarta(i, j, player.getCards().get(cardIndex - 1)));
     }
 }

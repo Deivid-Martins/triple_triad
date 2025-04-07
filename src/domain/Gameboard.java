@@ -225,7 +225,7 @@ public class Gameboard {
         if (matriz[i][j] == null) {
             return ConsoleColors.RESET;
         } else {
-            if (matriz[i][j].getOwner().IsPlayerOne()) {
+            if (matriz[i][j].getOwner().getIsPlayerOne()) {
                 return ConsoleColors.BLUE;
             } else {
                 return ConsoleColors.RED;

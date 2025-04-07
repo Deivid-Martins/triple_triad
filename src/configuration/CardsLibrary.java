@@ -8,8 +8,8 @@ import java.util.Random;
 
 public class CardsLibrary {
     // class declarations
-    public static final Random random = new Random();
-    public List<Card> cards;
+    public static final Random random = new Random(); // to get random cards
+    public List<Card> cards; // all cards in the library
 
     /**
      * CardsLibrary constructor that instantiates a lot of cards to play the game. Note: no one has an owner yet
@@ -35,7 +35,7 @@ public class CardsLibrary {
 
     /**
      * Get a specified amount of cards from cards library
-     * @param quantity the quantity of cards that will be choosen
+     * @param quantity int quantity of cards that will be choosen
      * @return a card array with the size of the "quantity" above
      */
     public Card[] getRandomCards(int quantity) {
