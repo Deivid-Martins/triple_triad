@@ -20,6 +20,17 @@ public class Gameboard {
         quantityUsedCards = 0;
     }
 
+    public boolean checkEndGame() {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (matriz[i][j] == null) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     /**
      * Add a Card element on Gameboard
      * @param line int line to put the card

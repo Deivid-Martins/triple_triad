@@ -48,12 +48,14 @@ public class StartGame {
         this.playerTwo.setCardsArray(cardsLibrary.getRandomCards(5, playerTwo));
         System.out.println("Cards choosen with sucess!");
 
-        gameboard.showBoard();
-        playerMenu(playerOne, playerTwo);
+        do {
+            gameboard.showBoard();
+            playerMenu(playerOne, playerTwo);
 
-        gameboard.showBoard();
-        playerMenu(playerTwo, playerOne);
-
+            gameboard.showBoard();
+            playerMenu(playerTwo, playerOne);
+        }while(!gameboard.checkEndGame());
+        System.out.println("Game over!");
         gameboard.showBoard();
     }
 
