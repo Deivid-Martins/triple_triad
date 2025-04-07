@@ -1,12 +1,9 @@
 package configuration;
 
-import domain.Card;
 import domain.Gameboard;
 import domain.Player;
 import utils.Tool;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class StartGame {
@@ -36,8 +33,8 @@ public class StartGame {
 
         System.out.println("Nomes definidos com sucesso!");
         System.out.println("Iremos sortear 5 cartas para cada um agora...");
-        this.playerOne.addCardsArray(cardsLibrary.getCards(5));
-        this.playerTwo.addCardsArray(cardsLibrary.getCards(5));
+        this.playerOne.addCardsArray(cardsLibrary.getRandomCards(5));
+        this.playerTwo.addCardsArray(cardsLibrary.getRandomCards(5));
         System.out.println("Cartas entregadas com sucesso!");
 
         gameboard.mostrarTabuleiro();

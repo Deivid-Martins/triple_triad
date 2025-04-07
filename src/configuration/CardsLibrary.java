@@ -7,9 +7,13 @@ import java.util.List;
 import java.util.Random;
 
 public class CardsLibrary {
-    public List<Card> cards;
+    // class declarations
     public static final Random random = new Random();
+    public List<Card> cards;
 
+    /**
+     * CardsLibrary constructor that instantiates a lot of cards to play the game. Note: no one has an owner yet
+     */
     public CardsLibrary() {
         this.cards = new ArrayList<Card>();
         cards.add(new Card(10, 2, 4, 6));
@@ -29,9 +33,14 @@ public class CardsLibrary {
         cards.add(new Card(2, 8, 8, 2));
     }
 
-    public Card[] getCards(int length) {
-        Card[] response = new Card[length];
-        for(int i = 0; i < length; i++) {
+    /**
+     * Get a specified amount of cards from cards library
+     * @param quantity the quantity of cards that will be choosen
+     * @return a card array with the size of the "quantity" above
+     */
+    public Card[] getRandomCards(int quantity) {
+        Card[] response = new Card[quantity];
+        for(int i = 0; i < quantity; i++) {
             response[i] = cards.get(random.nextInt(0, cards.size()));
         }
 
