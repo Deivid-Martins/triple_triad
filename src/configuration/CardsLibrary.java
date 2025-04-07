@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * CardsLibrary is, like the name says, a class used to store a lot of different Cards to play the game.
+ */
 public class CardsLibrary {
     // class declarations
     public static final Random random = new Random(); // to get random cards

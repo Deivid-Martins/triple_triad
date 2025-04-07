@@ -2,6 +2,9 @@ package domain;
 
 import utils.ConsoleColors;
 
+/**
+ * This class is used to store the game board. Here, we can see wich cards has been played and control everything.
+ */
 public class Gameboard {
     // class declarations
     private final Card[][] matriz; // the board with the cards
@@ -24,7 +27,7 @@ public class Gameboard {
      * @param card card to be placed on gameboard
      * @return return the quantity of points obtained
      */
-    public int addCarta(int line, int column, Card card) {
+    public int addCard(int line, int column, Card card) {
         matriz[line][column] = card;
         quantityUsedCards++;
 
@@ -157,7 +160,7 @@ public class Gameboard {
         for(int k = 0; k < allResults.length; k ++) {
             for(int l = k+1; l < allResults.length; l ++) {
                 if(allResults[k] && allResults[l] && allResults[k] == allResults[l]) {
-                    System.out.println("Same rule used!");
+                    System.out.println("'Same' rule used!");
 
                     switch (k) {
                         case 0:
@@ -199,70 +202,122 @@ public class Gameboard {
         return quantityPointsObtained;
     }
 
-    private boolean sameUp(int i, int j, Card card) {
-        if (i == 0 || matriz[i-1][j] == null)
+    /**
+     * Check if the card above has the same value
+     * @param line int line of the card selected
+     * @param column int column of the card selected
+     * @param card the card selected
+     * @return true if the cards has the same value. 0 if doesnot
+     */
+    private boolean sameUp(int line, int column, Card card) {
+        if (line == 0 || matriz[line -1][column] == null)
             return false;
-        return matriz[i][j].getUp() == matriz[i - 1][j].getDown();
+        return matriz[line][column].getUp() == matriz[line - 1][column].getDown();
     }
 
-    private boolean sameDown(int i, int j, Card card) {
-        if (i == 2 || matriz[i+1][j] == null)
+    /**
+     * Check if the card below has the same value
+     * @param line int line of the card selected
+     * @param column int column of the card selected
+     * @param card the card selected
+     * @return true if the cards has the same value. 0 if doesnot
+     */
+    private boolean sameDown(int line, int column, Card card) {
+        if (line == 2 || matriz[line +1][column] == null)
             return false;
-        return matriz[i][j].getDown() == matriz[i+1][j].getUp();
+        return matriz[line][column].getDown() == matriz[line +1][column].getUp();
     }
 
-    private boolean sameLeft(int i, int j, Card card) {
-        if (j == 0 || matriz[i][j-1] == null)
+    /**
+     * Check if the card on the left has the same value
+     * @param line int line of the card selected
+     * @param column int column of the card selected
+     * @param card the card selected
+     * @return true if the cards has the same value. 0 if doesnot
+     */
+    private boolean sameLeft(int line, int column, Card card) {
+        if (column == 0 || matriz[line][column -1] == null)
             return false;
-        return matriz[i][j].getLeft() == matriz[i][j-1].getRight();
+        return matriz[line][column].getLeft() == matriz[line][column -1].getRight();
     }
 
-    private boolean sameRight(int i, int j, Card card) {
-        if (j == 2 || matriz[i][j+1] == null)
+    /**
+     * Check if the card on the right has the same value
+     * @param line int line of the card selected
+     * @param column int column of the card selected
+     * @param card the card selected
+     * @return true if the cards has the same value. 0 if doesnot
+     */
+    private boolean sameRight(int line, int column, Card card) {
+        if (column == 2 || matriz[line][column +1] == null)
             return false;
-        return matriz[i][j].getRight() == matriz[i][j+1].getLeft();
+        return matriz[line][column].getRight() == matriz[line][column +1].getLeft();
     }
 
-    private String numCima(int i, int j) {
-        if (matriz[i][j] == null) {
+    /**
+     * Just transform the top num in hexadecimal base
+     * @param line card line
+     * @param column card column
+     * @return a string with the hexadecimal base or none, if its empty
+     */
+    private String numUp(int line, int column) {
+        if (matriz[line][column] == null) {
             return "     ";
         }
-        return this.matriz[i][j].getUp() == 10 ? "  A  " : "  " + Integer.toString(matriz[i][j].getUp())+ "  ";
+        return this.matriz[line][column].getUp() == 10 ? "  A  " : "  " + Integer.toString(matriz[line][column].getUp())+ "  ";
     }
 
-    private String numMeio(int i, int j) {
+    /**
+     * Just transform the center num in hexadecimal base
+     * @param line card line
+     * @param column card column
+     * @return a string with the hexadecimal base or none, if its empty
+     */
+    private String numCenter(int line, int column) {
         String auxEsq = "";
         String auxDir = "";
 
-        if (matriz[i][j] == null) {
+        if (matriz[line][column] == null) {
             return "     ";
         }
-        if (matriz[i][j].getLeft() == 10) {
+        if (matriz[line][column].getLeft() == 10) {
             auxEsq = "A";
         }else{
-            auxEsq = Integer.toString(matriz[i][j].getLeft());
+            auxEsq = Integer.toString(matriz[line][column].getLeft());
         }
-        if (matriz[i][j].getRight() == 10) {
+        if (matriz[line][column].getRight() == 10) {
             auxDir = "A";
         }else{
-            auxDir = Integer.toString(matriz[i][j].getRight());
+            auxDir = Integer.toString(matriz[line][column].getRight());
         }
 
         return auxEsq + "   " + auxDir;
     }
 
-    private String numBaixo(int i, int j) {
-        if (matriz[i][j] == null) {
+    /**
+     * Just transform the bottom num in hexadecimal base
+     * @param line card line
+     * @param column card column
+     * @return a string with the hexadecimal base or none, if its empty
+     */
+    private String numBottom(int line, int column) {
+        if (matriz[line][column] == null) {
             return "     ";
         }
-        return this.matriz[i][j].getDown() == 10 ? "  A  " : "  " + Integer.toString(matriz[i][j].getDown())+ "  ";
+        return this.matriz[line][column].getDown() == 10 ? "  A  " : "  " + Integer.toString(matriz[line][column].getDown())+ "  ";
     }
 
-    private String cor(int i, int j) {
-        if (matriz[i][j] == null) {
+    /**
+     * Set the colors to the cards of any players
+     * @param line card line
+     * @param column card column
+     * @return a string with the color based on the player
+     */
+    private String color(int line, int column) {
+        if (matriz[line][column] == null) {
             return ConsoleColors.RESET;
         } else {
-            if (matriz[i][j].getOwner().getIsPlayerOne()) {
+            if (matriz[line][column].getOwner().getIsPlayerOne()) {
                 return ConsoleColors.BLUE;
             } else {
                 return ConsoleColors.RED;
@@ -270,38 +325,42 @@ public class Gameboard {
         }
     }
 
-    public void mostrarTabuleiro() {
-        System.out.println("\n"+cor(0, 0)+"                    +-----+ "+cor(0, 1)+" +-----+ "+cor(0, 2)+" +-----+\n" +
+    /**
+     * Print the Game Board
+     */
+    public void showBoard() {
+        System.out.println("\n"+ color(0, 0)+"                    +-----+ "+ color(0, 1)+" +-----+ "+ color(0, 2)+" +-----+\n" +
 
-                "                    "+cor(0, 0)+"|"+numCima(0,0)+"| "+cor(0, 1)+" |"+numCima(0,1)+"| "+cor(0, 2)+" |"+numCima(0,2)+"|\n" +
+                "                    "+ color(0, 0)+"|"+ numUp(0,0)+"| "+ color(0, 1)+" |"+ numUp(0,1)+"| "+ color(0, 2)+" |"+ numUp(0,2)+"|\n" +
 
-                "                    "+cor(0, 0)+"|"+numMeio(0, 0)+"| "+cor(0, 1)+" |"+numMeio(0, 1)+"| "+cor(0, 2)+" |"+numMeio(0, 2)+"|\n" +
+                "                    "+ color(0, 0)+"|"+ numCenter(0, 0)+"| "+ color(0, 1)+" |"+ numCenter(0, 1)+"| "+ color(0, 2)+" |"+ numCenter(0, 2)+"|\n" +
 
-                "                    "+cor(0, 0)+"|"+numBaixo(0, 0)+"| "+cor(0, 1)+" |"+numBaixo(0, 1)+"| "+cor(0, 2)+" |"+numBaixo(0, 2)+"|\n" +
+                "                    "+ color(0, 0)+"|"+ numBottom(0, 0)+"| "+ color(0, 1)+" |"+ numBottom(0, 1)+"| "+ color(0, 2)+" |"+ numBottom(0, 2)+"|\n" +
 
-                "                    "+cor(0, 0)+"+-----+ "+cor(0, 1)+" +-----+ "+cor(0, 2)+" +-----+\n" +
+                "                    "+ color(0, 0)+"+-----+ "+ color(0, 1)+" +-----+ "+ color(0, 2)+" +-----+\n" +
 
-                "                    "+cor(1, 0)+"+-----+ "+cor(1, 1)+" +-----+ "+cor(1, 2)+" +-----+\n" +
+                "                    "+ color(1, 0)+"+-----+ "+ color(1, 1)+" +-----+ "+ color(1, 2)+" +-----+\n" +
 
-                "                    "+cor(1, 0)+"|"+numCima(1,0)+"| "+cor(1, 1)+" |"+numCima(1,1)+"| "+cor(1, 2)+" |"+numCima(1,2)+"|\n" +
+                "                    "+ color(1, 0)+"|"+ numUp(1,0)+"| "+ color(1, 1)+" |"+ numUp(1,1)+"| "+ color(1, 2)+" |"+ numUp(1,2)+"|\n" +
 
-                "                    "+cor(1, 0)+"|"+numMeio(1, 0)+"| "+cor(1, 1)+" |"+numMeio(1, 1)+"| "+cor(1, 2)+" |"+numMeio(1, 2)+"|\n" +
+                "                    "+ color(1, 0)+"|"+ numCenter(1, 0)+"| "+ color(1, 1)+" |"+ numCenter(1, 1)+"| "+ color(1, 2)+" |"+ numCenter(1, 2)+"|\n" +
 
-                "                    "+cor(1, 0)+"|"+numBaixo(1, 0)+"| "+cor(1, 1)+" |"+numBaixo(1, 1)+"| "+cor(1, 2)+" |"+numBaixo(1, 2)+"|\n" +
+                "                    "+ color(1, 0)+"|"+ numBottom(1, 0)+"| "+ color(1, 1)+" |"+ numBottom(1, 1)+"| "+ color(1, 2)+" |"+ numBottom(1, 2)+"|\n" +
 
-                "                    "+cor(1, 0)+"+-----+ "+cor(1, 1)+" +-----+ "+cor(1, 2)+" +-----+\n" +
+                "                    "+ color(1, 0)+"+-----+ "+ color(1, 1)+" +-----+ "+ color(1, 2)+" +-----+\n" +
 
-                "                    "+cor(2, 0)+"+-----+ "+cor(2, 1)+" +-----+ "+cor(2, 2)+" +-----+\n" +
+                "                    "+ color(2, 0)+"+-----+ "+ color(2, 1)+" +-----+ "+ color(2, 2)+" +-----+\n" +
 
-                "                    "+cor(2, 0)+"|"+numCima(2,0)+"| "+cor(2, 1)+" |"+numCima(2,1)+"| "+cor(2, 2)+" |"+numCima(2,2)+"|\n" +
+                "                    "+ color(2, 0)+"|"+ numUp(2,0)+"| "+ color(2, 1)+" |"+ numUp(2,1)+"| "+ color(2, 2)+" |"+ numUp(2,2)+"|\n" +
 
-                "                    "+cor(2, 0)+"|"+numMeio(2, 0)+"| "+cor(2, 1)+" |"+numMeio(2, 1)+"| "+cor(2, 2)+" |"+numMeio(2, 2)+"|\n" +
+                "                    "+ color(2, 0)+"|"+ numCenter(2, 0)+"| "+ color(2, 1)+" |"+ numCenter(2, 1)+"| "+ color(2, 2)+" |"+ numCenter(2, 2)+"|\n" +
 
-                "                    "+cor(2, 0)+"|"+numBaixo(2, 0)+"| "+cor(2, 1)+" |"+numBaixo(2, 1)+"| "+cor(2, 2)+" |"+numBaixo(2, 2)+"|\n" +
+                "                    "+ color(2, 0)+"|"+ numBottom(2, 0)+"| "+ color(2, 1)+" |"+ numBottom(2, 1)+"| "+ color(2, 2)+" |"+ numBottom(2, 2)+"|\n" +
 
-                "                    "+cor(2, 0)+"+-----+ "+cor(2, 1)+" +-----+ "+cor(2, 2)+" +-----+\n" + ConsoleColors.RESET);
+                "                    "+ color(2, 0)+"+-----+ "+ color(2, 1)+" +-----+ "+ color(2, 2)+" +-----+\n" + ConsoleColors.RESET);
     }
 
+    // general getters
     public Card[][] getMatriz () {
         return this.matriz;
     }

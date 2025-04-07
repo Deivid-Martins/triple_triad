@@ -2,6 +2,9 @@ package domain;
 
 import java.util.Scanner;
 
+/**
+ * Card class. The Card is used to play.
+ */
 public class Card {
     // class declarations
     private Player owner; // who is the owner of this card (player 1 or 2)

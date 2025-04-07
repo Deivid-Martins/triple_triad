@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * The Player class is where the playes information is stored.
+ */
 public class Player {
     // class declarations
     private final String name; // player's name. Used to identify the player

@@ -1,5 +1,8 @@
 package utils;
 
+/**
+ * This class is used to store all color that might be used in the console.
+ */
 public class ConsoleColors {
 
     public static final String RESET = "\u001b[0m";      // Reset

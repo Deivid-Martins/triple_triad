@@ -37,10 +37,10 @@ public class StartGame {
         this.playerTwo.setCardsArray(cardsLibrary.getRandomCards(5));
         System.out.println("Cartas entregadas com sucesso!");
 
-        gameboard.mostrarTabuleiro();
+        gameboard.showBoard();
         playerMenu(playerOne, playerTwo);
 
-        gameboard.mostrarTabuleiro();
+        gameboard.showBoard();
         playerMenu(playerTwo, playerOne);
     }
     
@@ -72,7 +72,7 @@ public class StartGame {
                     System.out.println("Pontuação de " + playerOnTurn.getName() + ": " + playerOnTurn.getPoints());
                     break;
                 case 5:
-                    gameboard.mostrarTabuleiro();
+                    gameboard.showBoard();
                     break;
                 default:
                     System.err.println("Opção inválida, tente novamente");
@@ -82,7 +82,7 @@ public class StartGame {
     }
 
     private void playerTurn(Player player) {
-        gameboard.mostrarTabuleiro();
+        gameboard.showBoard();
         player.printAllCards();
 
         System.out.print("Defina a carta a jogar, escolha de 1 a " + player.getCards().size() + ": ");
@@ -103,6 +103,6 @@ public class StartGame {
             System.out.print("Defina a coluna que deseja colocar a carta (1 a 3): ");
             j = Tool.nextIntLim(inputNum, 0, 2);
         }
-        player.setPoints(gameboard.addCarta(i, j, player.getCards().get(cardIndex - 1)));
+        player.setPoints(gameboard.addCard(i, j, player.getCards().get(cardIndex - 1)));
     }
 }
