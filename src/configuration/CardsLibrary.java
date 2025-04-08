@@ -74,8 +74,6 @@ public class CardsLibrary {
             int randomIndex = random.nextInt(0, cards.size());
             response[i] = cards.get(randomIndex).clone();
             response[i].setOwner(owner);
-            System.out.println("Card: " + response[i]);
-            System.out.println("Owner: " + response[i].getOwner().getName());
         }
 
         return response;

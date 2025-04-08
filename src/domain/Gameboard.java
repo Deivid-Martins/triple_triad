@@ -20,10 +20,6 @@ public class Gameboard {
         quantityUsedCards = 0;
     }
 
-    public boolean checkEndGame() {
-        return quantityUsedCards >= 9; // game stops if has 9 cards on board
-    }
-
     /**
      * Add a Card element on Gameboard
      * @param line int line to put the card
@@ -43,7 +39,6 @@ public class Gameboard {
         quantityPointsObtained += this.checkRight(line, column, card);
         quantityPointsObtained += this.checkUp(line, column, card);
         quantityPointsObtained += this.checkDown(line, column, card);
-
 
         return quantityPointsObtained;
     }
@@ -367,5 +362,9 @@ public class Gameboard {
     // general getters
     public Card[][] getMatriz () {
         return this.matriz;
+    }
+
+    public int getQuantityUsedCards() {
+        return this.quantityUsedCards;
     }
 }

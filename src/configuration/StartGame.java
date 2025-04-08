@@ -52,13 +52,18 @@ public class StartGame {
 
         System.out.println("Cards choosen with sucess!");
 
-        do {
-            gameboard.showBoard();
-            playerMenu(playerOne, playerTwo);
+        int usedCardsQuantity = gameboard.getQuantityUsedCards();
 
-            gameboard.showBoard();
-            playerMenu(playerTwo, playerOne);
-        } while (!gameboard.checkEndGame());
+        do {
+            usedCardsQuantity = gameboard.getQuantityUsedCards();
+            if(usedCardsQuantity < 9) {
+                gameboard.showBoard();
+                playerMenu(playerOne, playerTwo);
+
+                gameboard.showBoard();
+                playerMenu(playerTwo, playerOne);
+            }
+        } while (usedCardsQuantity != 9);
         System.out.println("Game over!");
         gameboard.showBoard();
     }
@@ -77,10 +82,6 @@ public class StartGame {
             System.out.println("3 - See oponent's cards");
             System.out.println("4 - See my pontuation");
             System.out.println("5 - See the game board\n");
-
-            for(Card card: playerOnTurn.getCards()) {
-                System.out.println(card);
-            }
 
             System.out.print("Make your choice: ");
 
