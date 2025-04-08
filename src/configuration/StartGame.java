@@ -1,6 +1,5 @@
 package configuration;
 
-import domain.Card;
 import domain.Gameboard;
 import domain.Player;
 import utils.Tool;
@@ -55,18 +54,14 @@ public class StartGame {
         int usedCardsQuantity = gameboard.getQuantityUsedCards();
 
         do {
-            usedCardsQuantity = gameboard.getQuantityUsedCards();
-
                 gameboard.showBoard();
                 playerMenu(playerOne, playerTwo);
 
-            usedCardsQuantity = gameboard.getQuantityUsedCards();
-            if(usedCardsQuantity < 9) {
-
+            if(!gameboard.checkEndGame()) {
                 gameboard.showBoard();
                 playerMenu(playerTwo, playerOne);
             }
-        } while (usedCardsQuantity != 9);
+        } while (!gameboard.checkEndGame());
         System.out.println("Game over!");
         gameboard.showBoard();
     }

@@ -21,6 +21,14 @@ public class Gameboard {
     }
 
     /**
+     * Check if the game alredy reach to an end
+     * @return true if it has ended. False if doesnot
+     */
+    public boolean checkEndGame() {
+        return quantityUsedCards >= 9;
+    }
+
+    /**
      * Add a Card element on Gameboard
      * @param line int line to put the card
      * @param column int column to put the card
