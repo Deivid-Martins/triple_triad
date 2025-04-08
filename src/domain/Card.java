@@ -73,6 +73,8 @@ public class Card {
     public void setOwner(Player owner) {
         if(owner!=null)
             this.owner = owner;
+        else
+            throw new NullPointerException("Owner is null");
     }
 
     //General Getters

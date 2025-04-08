@@ -35,6 +35,32 @@ public class CardsLibrary {
         cards.add(new Card(1, 10, 10, 1));
         cards.add(new Card(5, 5, 5, 5));
         cards.add(new Card(2, 8, 8, 2));
+        cards.add(new Card(6, 6, 4, 7));
+        cards.add(new Card(3, 9, 3, 7));
+        cards.add(new Card(4, 8, 5, 5));
+        cards.add(new Card(2, 9, 6, 3));
+        cards.add(new Card(5, 7, 5, 6));
+        cards.add(new Card(1, 8, 7, 4));
+        cards.add(new Card(6, 3, 6, 5));
+        cards.add(new Card(4, 6, 4, 8));
+        cards.add(new Card(5, 5, 9, 3));
+        cards.add(new Card(6, 2, 5, 7));
+        cards.add(new Card(7, 4, 6, 3));
+        cards.add(new Card(9, 3, 5, 2));
+        cards.add(new Card(3, 3, 7, 7));
+        cards.add(new Card(8, 5, 2, 5));
+        cards.add(new Card(5, 8, 1, 6));
+        cards.add(new Card(4, 9, 3, 4));
+        cards.add(new Card(7, 2, 7, 4));
+        cards.add(new Card(6, 6, 6, 2));
+        cards.add(new Card(8, 2, 4, 6));
+        cards.add(new Card(5, 6, 3, 6));
+        cards.add(new Card(4, 5, 4, 7));
+        cards.add(new Card(2, 7, 5, 6));
+        cards.add(new Card(3, 8, 6, 2));
+        cards.add(new Card(4, 6, 7, 3));
+        cards.add(new Card(6, 7, 3, 4));
+        cards.add(new Card(7, 3, 5, 5));
     }
 
     /**
