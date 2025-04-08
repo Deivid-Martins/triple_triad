@@ -1,5 +1,6 @@
 package configuration;
 
+import domain.Card;
 import domain.Gameboard;
 import domain.Player;
 import utils.Tool;
@@ -66,13 +67,17 @@ public class StartGame {
      */
     private void playerMenu(Player playerOnTurn, Player playerOponent) {
         System.out.println(playerOnTurn.getName() + ", what do you want to do?");
-        int choice = 0;
+        int choice;
         do {
             System.out.println("1 - Play a card on the table");
             System.out.println("2 - See my cards");
             System.out.println("3 - See oponent's cards");
             System.out.println("4 - See my pontuation");
             System.out.println("5 - See the game board\n");
+
+            for(Card card: playerOnTurn.getCards()) {
+                System.out.println(card);
+            }
 
             System.out.print("Make your choice: ");
 
@@ -129,5 +134,6 @@ public class StartGame {
             column = Tool.nextIntLim(inputNum, 0, 2);
         }
         player.setPoints(gameboard.addCard(line, column, player.getCards().get(cardIndex - 1)));
+        player.removeCardByIndex(cardIndex - 1);
     }
 }
