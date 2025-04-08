@@ -21,14 +21,7 @@ public class Gameboard {
     }
 
     public boolean checkEndGame() {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (matriz[i][j] == null) {
-                    return false;
-                }
-            }
-        }
-        return true;
+        return quantityUsedCards >= 9; // game stops if has 9 cards on board
     }
 
     /**

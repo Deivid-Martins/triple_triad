@@ -45,11 +45,10 @@ public class StartGame {
 
         System.out.println("Names defineds with sucess!");
         System.out.println("We'll randomly choose 5 cards to the players now...");
-        this.playerOne.setCardsArray(cardsLibrary.getRandomCards(5));
-        setCardOwnerToPlayer(playerOne);
 
-        this.playerTwo.setCardsArray(cardsLibrary.getRandomCards(5));
-        setCardOwnerToPlayer(playerTwo);
+        this.playerOne.setCardsArray(cardsLibrary.getRandomCards(5, playerOne));
+
+        this.playerTwo.setCardsArray(cardsLibrary.getRandomCards(5, playerTwo));
 
         System.out.println("Cards choosen with sucess!");
 
@@ -59,15 +58,9 @@ public class StartGame {
 
             gameboard.showBoard();
             playerMenu(playerTwo, playerOne);
-        }while(!gameboard.checkEndGame());
+        } while (!gameboard.checkEndGame());
         System.out.println("Game over!");
         gameboard.showBoard();
-    }
-
-    private void setCardOwnerToPlayer(Player owner) {
-        for(Card card: owner.getCards()) {
-            card.setOwner(owner);
-        }
     }
 
     /**

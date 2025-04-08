@@ -5,7 +5,7 @@ import java.util.Scanner;
 /**
  * Card class. The Card is used to play.
  */
-public class Card {
+public class Card implements Cloneable {
     // class declarations
     private Player owner; // who is the owner of this card (player 1 or 2)
 
@@ -95,4 +95,14 @@ public class Card {
     }
 
     public Player getOwner() { return owner;}
+
+    @Override
+    public Card clone() {
+        try {
+            return (Card) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
+    }
+
 }
