@@ -56,9 +56,12 @@ public class StartGame {
 
         do {
             usedCardsQuantity = gameboard.getQuantityUsedCards();
-            if(usedCardsQuantity < 9) {
+
                 gameboard.showBoard();
                 playerMenu(playerOne, playerTwo);
+
+            usedCardsQuantity = gameboard.getQuantityUsedCards();
+            if(usedCardsQuantity < 9) {
 
                 gameboard.showBoard();
                 playerMenu(playerTwo, playerOne);
