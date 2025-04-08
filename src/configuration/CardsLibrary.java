@@ -68,11 +68,10 @@ public class CardsLibrary {
      * @param quantity int quantity of cards that will be choosen
      * @return a card array with the size of the "quantity" above
      */
-    public Card[] getRandomCards(int quantity, Player owner) {
+    public Card[] getRandomCards(int quantity) {
         Card[] response = new Card[quantity];
         for(int i = 0; i < quantity; i++) {
             int randomIndex = random.nextInt(0, cards.size());
-            this.cards.get(randomIndex).setOwner(owner);
             response[i] = cards.get(randomIndex);
         }
 
