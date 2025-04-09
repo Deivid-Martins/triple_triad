@@ -25,7 +25,7 @@ public class Player {
         this.name = name;
         this.cards = new ArrayList<>();
         this.IsPlayerOne = IsPlayerOne;
-        this.points = 0;
+        this.points = 5;
     }
 
     /**
@@ -38,9 +38,14 @@ public class Player {
     }
 
     // general setters
-    public void setPoints(int points) {
+    public void addPoints(int points) {
         if(points > 0)
             this.points += points;
+    }
+
+    public void removePoints(int points) {
+        if(points > 0)
+            this.points -= points;
     }
 
     public void setCardsArray(Card[] cards) {

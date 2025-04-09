@@ -96,7 +96,7 @@ public class StartGame {
 
             switch (choice) {
                 case 1:
-                    playerTurn(playerOnTurn);
+                    playerTurn(playerOnTurn, playerOponent);
                     break;
                 case 2:
                     playerOnTurn.printAllCards();
@@ -121,7 +121,7 @@ public class StartGame {
      * This method starts when a player start your turn. This method let the player play.
      * @param player wich player will play right now
      */
-    private void playerTurn(Player player) {
+    private void playerTurn(Player player, Player opponent) {
         gameboard.showBoard();
         player.printAllCards();
 
@@ -144,7 +144,9 @@ public class StartGame {
             System.out.print("Choose a column to put the card (0 a 2): ");
             column = Tool.nextIntLim(inputNum, 0, 2);
         }
-        player.setPoints(gameboard.addCard(line, column, player.getCards().get(cardIndex - 1)));
+        int points = gameboard.addCard(line, column, player.getCards().get(cardIndex - 1));
+        opponent.removePoints(points);
+        player.addPoints(points);
         player.removeCardByIndex(cardIndex - 1);
     }
 }
