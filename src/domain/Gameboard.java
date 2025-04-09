@@ -28,6 +28,13 @@ public class Gameboard {
         return quantityUsedCards < 9;
     }
 
+
+    /**
+     * Declares who is the winner
+     * @param playerOne the first player
+     * @param playerTwo the other player
+     * @return a Player that won the game. If it was a draw, return null
+     */
     public Player getWinner(Player playerOne, Player playerTwo) {
         int playerOneCardQuantity = 0, playerTwoCardQuantity = 0;
         for (Card[] row : matriz) {
