@@ -44,7 +44,7 @@ public class Player {
     }
 
     public void setCardsArray(Card[] cards) {
-        this.cards = Arrays.stream(cards).toList();
+        this.cards = new ArrayList<>(Arrays.asList(cards));
     }
 
 
@@ -57,4 +57,7 @@ public class Player {
 
     public int getPoints() {return points;}
 
+    public void removeCardByIndex(int index) {
+        this.cards.remove(index);
+    }
 }

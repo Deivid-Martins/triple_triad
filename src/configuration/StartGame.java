@@ -2,6 +2,7 @@ package configuration;
 
 import domain.Gameboard;
 import domain.Player;
+import utils.ConsoleColors;
 import utils.Tool;
 
 import java.util.Scanner;
@@ -44,17 +45,34 @@ public class StartGame {
 
         System.out.println("Names defineds with sucess!");
         System.out.println("We'll randomly choose 5 cards to the players now...");
+
         this.playerOne.setCardsArray(cardsLibrary.getRandomCards(5, playerOne));
+
         this.playerTwo.setCardsArray(cardsLibrary.getRandomCards(5, playerTwo));
+
         System.out.println("Cards choosen with sucess!");
 
-        gameboard.showBoard();
-        playerMenu(playerOne, playerTwo);
+        do {
+                gameboard.showBoard();
+                playerMenu(playerOne, playerTwo);
 
+            if(gameboard.checkEndGame()) {
+                gameboard.showBoard();
+                playerMenu(playerTwo, playerOne);
+            }
+        } while (gameboard.checkEndGame());
+        System.out.println("Game over!");
         gameboard.showBoard();
-        playerMenu(playerTwo, playerOne);
+        messageToEnding();
+    }
 
-        gameboard.showBoard();
+    private void messageToEnding() {
+        Player winner = gameboard.getWinner(playerOne, playerTwo);
+        if(winner != null) {
+            System.out.println(ConsoleColors.YELLOW + winner.getName() + ", You have won the game!");
+        } else {
+            System.out.println(ConsoleColors.YELLOW + "DRAW...");
+        }
     }
 
     /**
@@ -64,7 +82,7 @@ public class StartGame {
      */
     private void playerMenu(Player playerOnTurn, Player playerOponent) {
         System.out.println(playerOnTurn.getName() + ", what do you want to do?");
-        int choice = 0;
+        int choice;
         do {
             System.out.println("1 - Play a card on the table");
             System.out.println("2 - See my cards");
@@ -118,14 +136,15 @@ public class StartGame {
 
         // enquanto ele colocar num lugar que tenha carta
         while(gameboard.getMatriz()[line][column] != null) {
-            System.err.println("It's alredy has a card here, try again with a different position!");
+            System.out.println(ConsoleColors.RED + "It's alredy has a card here, try again with a different position!");
 
-            System.out.print("Choose a line to put the card (0 a 2): ");
+            System.out.print(ConsoleColors.RESET + "Choose a line to put the card (0 a 2): ");
             line = Tool.nextIntLim(inputNum, 0, 2);
 
             System.out.print("Choose a column to put the card (0 a 2): ");
             column = Tool.nextIntLim(inputNum, 0, 2);
         }
         player.setPoints(gameboard.addCard(line, column, player.getCards().get(cardIndex - 1)));
+        player.removeCardByIndex(cardIndex - 1);
     }
 }
