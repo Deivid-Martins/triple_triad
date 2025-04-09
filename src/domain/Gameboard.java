@@ -25,7 +25,25 @@ public class Gameboard {
      * @return true if it has ended. False if doesnot
      */
     public boolean checkEndGame() {
-        return quantityUsedCards >= 9;
+        return quantityUsedCards < 9;
+    }
+
+    public Player getWinner(Player playerOne, Player playerTwo) {
+        int playerOneCardQuantity = 0, playerTwoCardQuantity = 0;
+        for (Card[] row : matriz) {
+            for (Card card : row) {
+                if(card.getOwner().equals(playerOne)) {
+                    playerOneCardQuantity++;
+                } else {
+                    playerTwoCardQuantity++;
+                }
+            }
+        }
+        if(playerOneCardQuantity > playerTwoCardQuantity)
+            return playerOne; // Player One Wins
+        else if (playerOneCardQuantity == playerTwoCardQuantity)
+            return null; // Draw
+        return playerTwo;  // Player Two Wins
     }
 
     /**
@@ -158,10 +176,10 @@ public class Gameboard {
         boolean resultUp, resultDown, resultLeft, resultRight;
         int quantityPointsObtained = 0;
 
-        resultUp = sameUp(line, column, card);
-        resultDown = sameDown(line, column, card);
-        resultLeft = sameLeft(line, column, card);
-        resultRight = sameRight(line, column, card);
+        resultUp = sameUp(line, column);
+        resultDown = sameDown(line, column);
+        resultLeft = sameLeft(line, column);
+        resultRight = sameRight(line, column);
         boolean[] allResults = {resultUp, resultDown, resultLeft, resultRight};
 
         for(int k = 0; k < allResults.length; k ++) {
@@ -170,37 +188,62 @@ public class Gameboard {
                     System.out.println("'Same' rule used!");
 
                     switch (k) {
-                        case 0:
-                            matriz[line -1][column].setOwner(card.getOwner());
-                            quantityPointsObtained++;
+                        case 0: // up
+                            if (line > 0 && matriz[line - 1][column] != null) {
+                                matriz[line - 1][column].setOwner(card.getOwner());
+                                quantityPointsObtained++;
+                            }
+                            break;
+                        case 1: // down
+                            if (line < 2 && matriz[line + 1][column] != null) {
+                                matriz[line + 1][column].setOwner(card.getOwner());
+                                quantityPointsObtained++;
+                            }
                             break;
 
-                        case 1:
-                            matriz[line][column -1].setOwner(card.getOwner());
-                            quantityPointsObtained++;
-                            break;
 
-                        case 2:
-                            matriz[line +1][column].setOwner(card.getOwner());
-                            quantityPointsObtained++;
+                        case 2: // left
+                            if (column > 0 && matriz[line][column - 1] != null) {
+                                matriz[line][column - 1].setOwner(card.getOwner());
+                                quantityPointsObtained++;
+                            }
+                            break;
+                        case 3: // right
+                            if (column < 2 && matriz[line][column + 1] != null) {
+                                matriz[line][column + 1].setOwner(card.getOwner());
+                                quantityPointsObtained++;
+                            }
                             break;
                     }
 
+                    // Aplica para a segunda direção (l)
                     switch (l) {
+                        case 0:
+                            if (line > 0 && matriz[line - 1][column] != null) {
+                                matriz[line - 1][column].setOwner(card.getOwner());
+                                quantityPointsObtained++;
+                            }
+                            break;
                         case 1:
-                            matriz[line][column -1].setOwner(card.getOwner());
-                            quantityPointsObtained++;
+                            if (line < 2 && matriz[line + 1][column] != null) {
+                                matriz[line + 1][column].setOwner(card.getOwner());
+                                quantityPointsObtained++;
+                            }
                             break;
-
                         case 2:
-                            matriz[line +1][column].setOwner(card.getOwner());
-                            quantityPointsObtained++;
+                            if (column > 0 && matriz[line][column - 1] != null) {
+                                matriz[line][column - 1].setOwner(card.getOwner());
+                                quantityPointsObtained++;
+                            }
                             break;
-
                         case 3:
-                            matriz[line][column +1].setOwner(card.getOwner());
-                            quantityPointsObtained++;
+                            if (column < 2 && matriz[line][column + 1] != null) {
+                                matriz[line][column + 1].setOwner(card.getOwner());
+                                quantityPointsObtained++;
+                            }
                             break;
+                        default:
+                            throw new IllegalStateException("Unexpected value: " + l);
                     }
                 }
             }
@@ -213,10 +256,9 @@ public class Gameboard {
      * Check if the card above has the same value
      * @param line int line of the card selected
      * @param column int column of the card selected
-     * @param card the card selected
      * @return true if the cards has the same value. 0 if doesnot
      */
-    private boolean sameUp(int line, int column, Card card) {
+    private boolean sameUp(int line, int column) {
         if (line == 0 || matriz[line -1][column] == null)
             return false;
         return matriz[line][column].getUp() == matriz[line - 1][column].getDown();
@@ -226,10 +268,9 @@ public class Gameboard {
      * Check if the card below has the same value
      * @param line int line of the card selected
      * @param column int column of the card selected
-     * @param card the card selected
      * @return true if the cards has the same value. 0 if doesnot
      */
-    private boolean sameDown(int line, int column, Card card) {
+    private boolean sameDown(int line, int column) {
         if (line == 2 || matriz[line +1][column] == null)
             return false;
         return matriz[line][column].getDown() == matriz[line +1][column].getUp();
@@ -239,10 +280,9 @@ public class Gameboard {
      * Check if the card on the left has the same value
      * @param line int line of the card selected
      * @param column int column of the card selected
-     * @param card the card selected
      * @return true if the cards has the same value. 0 if doesnot
      */
-    private boolean sameLeft(int line, int column, Card card) {
+    private boolean sameLeft(int line, int column) {
         if (column == 0 || matriz[line][column -1] == null)
             return false;
         return matriz[line][column].getLeft() == matriz[line][column -1].getRight();
@@ -252,10 +292,9 @@ public class Gameboard {
      * Check if the card on the right has the same value
      * @param line int line of the card selected
      * @param column int column of the card selected
-     * @param card the card selected
      * @return true if the cards has the same value. 0 if doesnot
      */
-    private boolean sameRight(int line, int column, Card card) {
+    private boolean sameRight(int line, int column) {
         if (column == 2 || matriz[line][column +1] == null)
             return false;
         return matriz[line][column].getRight() == matriz[line][column +1].getLeft();

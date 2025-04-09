@@ -2,6 +2,7 @@ package configuration;
 
 import domain.Gameboard;
 import domain.Player;
+import utils.ConsoleColors;
 import utils.Tool;
 
 import java.util.Scanner;
@@ -51,19 +52,27 @@ public class StartGame {
 
         System.out.println("Cards choosen with sucess!");
 
-        int usedCardsQuantity = gameboard.getQuantityUsedCards();
-
         do {
                 gameboard.showBoard();
                 playerMenu(playerOne, playerTwo);
 
-            if(!gameboard.checkEndGame()) {
+            if(gameboard.checkEndGame()) {
                 gameboard.showBoard();
                 playerMenu(playerTwo, playerOne);
             }
-        } while (!gameboard.checkEndGame());
+        } while (gameboard.checkEndGame());
         System.out.println("Game over!");
         gameboard.showBoard();
+        messageToEnding();
+    }
+
+    private void messageToEnding() {
+        Player winner = gameboard.getWinner(playerOne, playerTwo);
+        if(winner != null) {
+            System.out.println(ConsoleColors.YELLOW + winner.getName() + ", You have won the game!");
+        } else {
+            System.out.println(ConsoleColors.YELLOW + "DRAW...");
+        }
     }
 
     /**
@@ -127,9 +136,9 @@ public class StartGame {
 
         // enquanto ele colocar num lugar que tenha carta
         while(gameboard.getMatriz()[line][column] != null) {
-            System.err.println("It's alredy has a card here, try again with a different position!");
+            System.out.println(ConsoleColors.RED + "It's alredy has a card here, try again with a different position!");
 
-            System.out.print("Choose a line to put the card (0 a 2): ");
+            System.out.print(ConsoleColors.RESET + "Choose a line to put the card (0 a 2): ");
             line = Tool.nextIntLim(inputNum, 0, 2);
 
             System.out.print("Choose a column to put the card (0 a 2): ");
